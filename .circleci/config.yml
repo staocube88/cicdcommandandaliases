@@ -21,16 +21,17 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - checkout
-      - run:
-          name: test hello
-          command: echo "test hello"
+      - run: exit 1
+      - run: 
+          name: on error
+          command: echo "test error"
+          when: on_fail
       - print_pipeline_id
 
-      - run: 
-          name: Upload Failed Test
-          command: curl --data failed_tests.log https://oluwatobisolomon.com/error_logs
-          when: on_fail
+      # - run: 
+      #     name: Upload Failed Test
+      #     command: curl --data failed_tests.log https://oluwatobisolomon.com/error_logs
+      #     when: on_fail
 
 
 # Invoke jobs via workflows
