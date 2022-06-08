@@ -22,7 +22,9 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run : echo "test hollo"
+      - run:
+          name: test hello
+          command: echo "test hello"
       - print_pipeline_id
 
       - run: 
