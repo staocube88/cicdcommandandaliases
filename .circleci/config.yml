@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-      - image: cimg/base:stable
+      - image: circleci/node:13.8.0
 version: 2.1
 
 commands:
@@ -22,7 +22,14 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - run : echo "test hollo"
       - print_pipeline_id
+
+      - run: 
+          name: Upload Failed Test
+          command: curl --data failed_tests.log https://oluwatobisolomon.com/error_logs
+          when: on_fail
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
